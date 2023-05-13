@@ -1,10 +1,16 @@
 const countEl = document.querySelector('.count');
 const trees = document.querySelector(".trees");
-const puzzle = Array.from(trees.children);
+const puzzles = Array.from(trees.children);
 const btn = document.querySelector("button")
 
-let tree_num = 145;
+let tree_num = 149;
 let loop_num = parseInt(tree_num % 10);
+if (tree_num == 0){
+  loop_num = 0
+}
+else{
+  loop_num = 10
+}
 let btn_num = parseInt(tree_num / 10);
 console.log(tree_num);
 countEl.textContent = "총" + tree_num +"그루";
@@ -19,8 +25,24 @@ countEl.textContent = "총" + tree_num +"그루";
 //     console.log('!!!')
 // }
 
-console.log(puzzle);
+// 정적인 퍼즐
+console.log(puzzles);
+let cnt = 0
 for (i = 0; i < loop_num; i++){
-    puzzle[9-i].style.opacity = 0;
-} 
+        setTimeout(() =>{
+          puzzles[9-cnt].style.transition = "opacity 1.0s ease-in-out";
+          puzzles[9-cnt].style.opacity = 0;
+          console.log(i, cnt)
+          cnt += 1 
+        }, i * 1000)
+    
+    }
+
+// 동적인 퍼즐
+// puzzles.forEach(function(puzzle, index){
+//     gsap.to(puzzle, .3,{
+//         opacity: 0,
+//     }) 
+// })
+
 btn.textContent = btn_num
